@@ -1,0 +1,29 @@
+{
+  "name": "test-borovoystudio",
+  "version": "0.0.0",
+  "description": "Test task from BorovoyStudio",
+  "main": "index.js",
+  "repository": "https://github.com/atlant-t/test-borovoystudio.git",
+  "author": "Sergey Murzin <atlant-t@bk.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/bootstrap": "^3.3.36",
+    "@types/browser-sync": "^0.0.38",
+    "@types/del": "^3.0.0",
+    "@types/gulp": "^4.0.5",
+    "@types/gulp-sass": "^0.0.31",
+    "@types/gulp-typescript": "^2.13.0",
+    "@types/jquery": "^3.2.17",
+    "@types/node": "^9.3.0",
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.23.5",
+    "del": "^3.0.0",
+    "gulp": "gulpjs/gulp#4.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^4.0.0-alpha.1",
+    "jquery": "^3.2.1",
+    "ts-node": "^4.1.0",
+    "tslib": "^1.8.1",
+    "typescript": "^2.6.2"
+  }
+}

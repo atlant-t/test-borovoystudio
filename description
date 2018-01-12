@@ -1,0 +1,19 @@
+Devolop an html-page according to the psd-layout.
+
+Requirements:
+1. Display without a horizontal scrollbar.
+2. Screen sizes:
+	- mobile: 320‒767 px (responsive width);
+	- pad: 768‒1023 px (fixed width);
+	- small: 1024‒1279 px (fixed width);
+	- big: more 1280 px (fixed width).
+3. Slider has an autoscroll every 7500 msec.
+4. Page display has equally in Chrome, Firefox and IE11.
+
+Wishes for the stack of technology: bootstrap, gulp/grunt, webpack, npm, git.
+
+Specify the real time for the work.
+
+The rest is up to you.
+
+The completed work and questionary should be sent to hr@db.by with note "Верстальщик"
