@@ -13,7 +13,7 @@ import {
 } from 'browser-sync';
 
 const SRC_DIR = 'src/';
-const DST_DIR = 'dist/'
+const DST_DIR = 'dist/';
 
 const PATH = {
 	html: {
@@ -27,33 +27,41 @@ const PATH = {
 	style: {
 		dst_dir: DST_DIR + 'style'
 	},
+	font: {
+		dst_dir: DST_DIR + 'font'
+	},
 	module: {
 		jquery: 'node_modules/jquery/dist/jquery.min.js',
 		bootstrapScript: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-		bootstrapStyle: 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+		bootstrapStyle: 'node_modules/bootstrap/dist/css/bootstrap.min.css',
+		bootstrapFont: 'node_modules/bootstrap/dist/css/bootstrap.min.css'
 	}
 }
 
 // generate html
 function compilePages() {
 	return src(PATH.html.source_files)
-		.pipe(dest(PATH.html.dst_dir))
+		.pipe(dest(PATH.html.dst_dir));
 }
 
 // add frameworks
-let addFrameworks = parallel(addJQuery, addBootstrapScript, addBootstrapStyle)
+let addFrameworks = parallel(addJQuery, addBootstrapScript, addBootstrapStyle, addBootstrapFont);
 function addJQuery() {
 	return src(PATH.module.jquery)
-		.pipe(dest(PATH.script.dst_dir))
+		.pipe(dest(PATH.script.dst_dir));
 }
 
 function addBootstrapScript() {
 	return src(PATH.module.bootstrapScript)
-		.pipe(dest(PATH.script.dst_dir))
+		.pipe(dest(PATH.script.dst_dir));
 }
 function addBootstrapStyle() {
 	return src(PATH.module.bootstrapStyle)
-		.pipe(dest(PATH.style.dst_dir))
+		.pipe(dest(PATH.style.dst_dir));
+}
+function addBootstrapFont() {
+	return src(PATH.module.bootstrapFont)
+		.pipe(dest(PATH.font.dst_dir));
 }
 
 // run server
