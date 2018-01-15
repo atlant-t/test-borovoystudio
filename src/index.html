@@ -2,31 +2,39 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Брестский стандарт</title>
-		<script src="/script/jquery.min.js" charset="utf-8"></script>
-		<script src="/script/bootstrap.min.js" charset="utf-8"></script>
-		<link rel="stylesheet" href="/style/bootstrap.min.css">
+		<script src="/modules/jquery.min.js" charset="utf-8"></script>
+		<script src="/modules/bootstrap.min.js" charset="utf-8"></script>
+		<link href="/modules/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#">Брестский стандарт</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="top-navbar">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">О компании</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Каталог</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Партнерам</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
+		<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"><img src="/assets/logo.svg" alt=""></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-navbar">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse text-right" id="top-navbar">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="#">О компании</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Каталог</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Партнерам</a></li>
+						<li class="nav-item"><a class="nav-link" href="#">Контакты</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" id="navbarSearch" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="icon"><svg viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg></i>
+							</a>
+							<input class="form-control dropdown-menu dropdown-menu-right pl-2 Pr-2" type="search" placeholder="Search" aria-label="Search" aria-labelledby="navbarSearch">
+						</li>
+					</ul>
+				</div>
 			</div>
 		</nav>
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="7500">
+		<div id="main-slider" class="carousel slide" data-ride="carousel" data-interval="7500">
+			<div class="carousel-background">
+				<img src="/assets/slider/bg.jpg">
+			</div>
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -34,23 +42,55 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<div class="d-block w-100"><div class="img" style="height: calc(100vh - 56px); background-color: #aaa"></div></div>
+					<div class="container">
+						<div class="row align-items-center flex-nowrap flex-column flex-md-row flex-md-wrap">
+							<div class="col-md-7 text-center text-md-right">
+								<img src="/assets/slider/slide_1.png" alt="">
+							</div>
+							<div class="col-md-5 order-md-first text-md-left text-center zero-shrink">
+								<div class="display-4">Ваш выбор, наша&nbsp;работа</div>
+								<button class="btn btn-primary btn-lg" type="button">Перейти в каталог</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="carousel-item">
-					<div class="d-block w-100"><div class="img" style="height: calc(100vh - 56px); background-color: #bbb"></div></div>
+					<div class="container">
+						<div class="row align-items-center flex-nowrap flex-column flex-md-row flex-md-wrap">
+							<div class="col-md-7 text-center text-md-right">
+								<img src="/assets/slider/slide_2.png" alt="">
+							</div>
+							<div class="col-md-5 order-md-first text-md-left text-center zero-shrink">
+								<div class="display-4">Ваш выбор, наша&nbsp;работа</div>
+								<button class="btn btn-primary btn-lg" type="button">Перейти в каталог</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="carousel-item">
-					<div class="d-block w-100"><div class="img" style="height: calc(100vh - 56px); background-color: #ccc"></div></div>
+					<div class="container">
+						<div class="row align-items-center flex-nowrap flex-column flex-md-row flex-md-wrap">
+							<div class="col-md-7 text-center text-md-right">
+								<img src="/assets/slider/slide_3.png" alt="">
+							</div>
+							<div class="col-md-5 order-md-first text-md-left text-center zero-shrink">
+								<div class="display-4">Ваш выбор, наша&nbsp;работа</div>
+								<button class="btn btn-primary btn-lg" type="button">Перейти в каталог</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Назад</span>
-			</a>
-			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Далее</span>
-			</a>
+			<div class="carousel-control-container">
+				<a class="carousel-control-prev" href="#main-slider" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Назад</span>
+				</a>
+				<a class="carousel-control-next" href="#main-slider" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Далее</span>
+				</a>
+			</div>
 		</div>
 	</body>
 </html>

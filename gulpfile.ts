@@ -6,6 +6,10 @@ import {
 
 import * as del from 'del';
 
+import * as sass from 'gulp-sass';
+import * as rename from 'gulp-rename';
+import { init as mapInit, write as mapWrite } from 'gulp-sourcemaps';
+
 import {
 	init as serverInit,
 	watch as serverWatch,
@@ -27,14 +31,17 @@ const PATH = {
 	style: {
 		dst_dir: DST_DIR + 'style'
 	},
-	font: {
-		dst_dir: DST_DIR + 'font'
+	assets: {
+		source_dir: SRC_DIR + 'assets/',
+		source_files: SRC_DIR + 'assets/**/*.*',
+		dst_dir: DST_DIR + 'assets/'
 	},
 	module: {
+		source_dir: SRC_DIR + 'modules/',
 		jquery: 'node_modules/jquery/dist/jquery.min.js',
 		bootstrapScript: 'node_modules/bootstrap/dist/js/bootstrap.min.js',
-		bootstrapStyle: 'node_modules/bootstrap/dist/css/bootstrap.min.css',
-		bootstrapFont: 'node_modules/bootstrap/dist/css/bootstrap.min.css'
+		bootstrapStyle: SRC_DIR + 'modules/bootstrap.scss',
+		dst_dir: DST_DIR + 'modules'
 	}
 }
 
@@ -45,23 +52,31 @@ function compilePages() {
 }
 
 // add frameworks
-let addFrameworks = parallel(addJQuery, addBootstrapScript, addBootstrapStyle, addBootstrapFont);
+let addFrameworks = parallel(addJQuery, addBootstrapScript, addBootstrapStyle);
 function addJQuery() {
 	return src(PATH.module.jquery)
-		.pipe(dest(PATH.script.dst_dir));
+		.pipe(dest(PATH.module.dst_dir));
 }
 
 function addBootstrapScript() {
 	return src(PATH.module.bootstrapScript)
-		.pipe(dest(PATH.script.dst_dir));
+		.pipe(dest(PATH.module.dst_dir));
 }
 function addBootstrapStyle() {
 	return src(PATH.module.bootstrapStyle)
-		.pipe(dest(PATH.style.dst_dir));
+		.pipe(mapInit())
+		.pipe(sass({
+			outputStyle: 'compressed'
+		}).on('error', sass.logError))
+		.pipe(rename({ suffix: '.min'}))
+		.pipe(mapWrite('.'))
+		.pipe(dest(PATH.module.dst_dir));
 }
-function addBootstrapFont() {
-	return src(PATH.module.bootstrapFont)
-		.pipe(dest(PATH.font.dst_dir));
+
+// copy assets
+function copyAssets() {
+	return src(PATH.assets.source_files)
+		.pipe(dest(PATH.assets.dst_dir));
 }
 
 // run server
@@ -80,11 +95,12 @@ function serve() {
 // run watcher
 function watchFiles() {
 	watch(PATH.html.source_files, compilePages);
+	watch([PATH.module.bootstrapStyle, PATH.module.source_dir + '_bootstrap/**/*.*'], addBootstrapStyle);
 }
 
 
 // make tasks
 task('clear', () => { return del(DST_DIR) });
-task('build', series('clear', parallel(compilePages, addFrameworks)));
+task('build', series('clear', parallel(compilePages, addFrameworks, copyAssets)));
 task('serve', serve);
 task('dev', series('build', parallel(serve, watchFiles)));

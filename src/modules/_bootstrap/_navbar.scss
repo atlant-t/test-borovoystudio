@@ -1,0 +1,14 @@
+.navbar-brand > img {
+	height: 5rem;
+	margin-top: -.5rem;
+	margin-bottom: (-4.5rem + $navbar-brand-font-size + $navbar-brand-padding-y);
+}
+
+.navbar-nav {
+	.active > .nav-link,
+	.nav-link.active,
+	.nav-link.show,
+	.show > .nav-link {
+		font-weight: bold;
+	}
+}

@@ -1,0 +1,11 @@
+i {
+	color: #888;
+	> svg {
+		display: inline-block;
+		height: 1em * $line-height-base;
+		width: 1em * $line-height-base;
+		// margin-top: (-1em * $line-height-base + 1em) / 2;
+		margin-bottom: (-1em * $line-height-base + 1em);
+		fill: currentColor;
+	}
+}

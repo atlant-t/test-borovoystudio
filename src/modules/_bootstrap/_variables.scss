@@ -1,0 +1,32 @@
+
+$primary: #e54646;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 320px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px
+);
+$container-max-widths: (
+	md: 767px,
+	lg: 960px,
+	xl: 1200px
+);
+
+$border-radius-lg: 2rem;
+
+$navbar-padding-y: 1rem;
+$navbar-light-active-color: $primary;
+
+$carousel-indicator-width: 15px;
+$carousel-indicator-height: 15px;
+$carousel-indicator-radius: 50%;
+
+$carousel-indicator-active-bg: $primary;
+
+$carousel-caption-width: 100%;
+$carousel-control-width: 10%;
+
+$input-btn-padding-y-lg: 1rem;
+$input-btn-padding-x-lg: 1.5rem;
