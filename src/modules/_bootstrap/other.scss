@@ -9,3 +9,91 @@ i {
 		fill: currentColor;
 	}
 }
+
+.block {
+	position: relative;
+	overflow: hidden;
+
+	> .block-bg:first-child {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+	}
+}
+
+.custom-slider {
+	position: relative;
+	width: 100%;
+	padding-left: $carousel-control-width;
+	padding-right: $carousel-control-width;
+	&-inner {
+		width: calc(300px * 2);
+		@include media-breakpoint-up(md) {
+			width: calc(300px * 2);
+		}
+		@include media-breakpoint-up(xl) {
+			width: calc(300px * 3);
+		}
+	}
+	&-inner {
+		font-size: 0;
+		// width: calc((260px + 20px * 2) * 3);
+		margin: 0 auto;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	&-item {
+		display: inline-flex;
+		font-size: 1rem;
+		padding: 20px;
+		align-content: center;
+		justify-content: center;
+		width: 300px;
+		height: 300px;
+		> a {
+			width: 100%;
+			height: 260px;
+			overflow: hidden;
+		}
+	}
+	&-control-prev,
+	&-control-next {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: $carousel-control-width;
+		color: $carousel-control-color;
+		text-align: center;
+		opacity: $carousel-control-opacity;
+
+		@include hover-focus {
+			color: $carousel-control-color;
+			text-decoration: none;
+			outline: 0;
+			opacity: .9;
+		};
+	}
+	&-control-prev { left: 0 }
+	&-control-next { right: 0 }
+
+	&.to-prev &-item:first-child {
+		animation: custom-slider-animation-to-prev 0.5s linear 0s 1 both;
+	}
+	&.to-next &-item:first-child {
+		animation: custom-slider-animation-to-next 0.5s linear 0s 1 both;
+	}
+}
+
+@keyframes custom-slider-animation-to-prev {
+	from  { margin-left: 0; }
+	to { margin-left: calc(-260px - 20px * 2) }
+}
+@keyframes custom-slider-animation-to-next {
+	from { margin-left: calc(-260px - 20px * 2) }
+	to  { margin-left: 0; }
+}

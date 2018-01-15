@@ -7,6 +7,7 @@ import {
 import * as del from 'del';
 
 import * as sass from 'gulp-sass';
+import * as ts from 'gulp-typescript'
 import * as rename from 'gulp-rename';
 import { init as mapInit, write as mapWrite } from 'gulp-sourcemaps';
 
@@ -26,7 +27,9 @@ const PATH = {
 		dst_dir: DST_DIR
 	},
 	script: {
-		dst_dir: DST_DIR + 'script'
+		source_dir: SRC_DIR + 'script/',
+		source_files: SRC_DIR + 'script/*.ts',
+		dst_dir: DST_DIR + 'script/'
 	},
 	style: {
 		dst_dir: DST_DIR + 'style'
@@ -49,6 +52,17 @@ const PATH = {
 function compilePages() {
 	return src(PATH.html.source_files)
 		.pipe(dest(PATH.html.dst_dir));
+}
+
+// generate scripts
+const tsProject = ts.createProject(PATH.script.source_dir + 'tsconfig.json')
+function compileScripts() {
+	let result = tsProject.src()
+		.pipe(mapInit())
+		.pipe(tsProject());
+	return result.js
+		.pipe(mapWrite('.'))
+		.pipe(dest(PATH.script.dst_dir))
 }
 
 // add frameworks
@@ -95,12 +109,13 @@ function serve() {
 // run watcher
 function watchFiles() {
 	watch(PATH.html.source_files, compilePages);
+	watch(PATH.script.source_files, compileScripts);
 	watch([PATH.module.bootstrapStyle, PATH.module.source_dir + '_bootstrap/**/*.*'], addBootstrapStyle);
 }
 
 
 // make tasks
 task('clear', () => { return del(DST_DIR) });
-task('build', series('clear', parallel(compilePages, addFrameworks, copyAssets)));
+task('build', series('clear', parallel(compilePages, compileScripts, addFrameworks, copyAssets)));
 task('serve', serve);
 task('dev', series('build', parallel(serve, watchFiles)));
